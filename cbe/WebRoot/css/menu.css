@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* 全兼容可高亮二级缓冲折叠菜单*/
+/* 作者：冰极峰 biny*/
+/* 博客：冰极峰博客:http://www.cnblogs.com/binyong/*/
+/* Email:szbiny@163.com*/
+/* 日期：2010-05-27*/
+
+/* CSS Document */
+/*通用设置*/
+*{margin:0;padding:0;}
+html,body{height:100%;text-align:center;}
+a:link,a:visited{ text-decoration:none;}
+
+/*菜单个性设置*/
+.box{width:200px;height:100%;margin:0 auto;height:100%;background:url(images/menuboxbg.gif) repeat-y left top;}
+.box ul{list-style:none;text-align:left;}
+.box h2{width:200px;margin:0 auto;height:34px;background:#FFF url(../images/menuhead1.gif) no-repeat left top;text-indent:-9999px;}
+
+/*一级菜单*/
+.menu li.level1 a{display:block;line-height:30px;height:30px;padding-left:55px; font-size:15px;color:black;background:url(../images/1.gif) no-repeat left top;}
+/*一级菜单两态样式,供JS调用*/
+.menu li.level1 a.hove{background-position:left -30px;}
+.menu li.level1 a.cur{background-position:left -30px;} 
+
+/*二级菜单*/
+.menu li ul{padding-left:16px;overflow:hidden;}
+.menu li ul.level2{width:166px;display:none;}
+.menu li ul.level2 li{height:30px;line-height:30px;}
+.menu li ul.level2 li a{display:block;height:30px;line-height:30px;background:#DFF1FD url(../images/t1.gif) no-repeat 10px center;padding-left:30px;color:#42556B;border-top:1px #B8C2CB solid;overflow:hidden;}
+/*二级菜单两态样式,供JS调用*/
+.menu li ul.level2 li a.hove1{background:#F6F6F6 url(../images/t2.gif) no-repeat 10px center;}

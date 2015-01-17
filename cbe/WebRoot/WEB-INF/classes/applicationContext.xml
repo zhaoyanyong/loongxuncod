@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+	</bean>
+
+	<!-- 指定当前的事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<!-- 使用HibernateTransactionManager 必须注入一个SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 配置事务特性 -->
+	<tx:advice id="idAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="find*" propagation="NOT_SUPPORTED"
+				read-only="true" isolation="READ_COMMITTED" />
+			<tx:method name="save*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+			<tx:method name="delete*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+			<tx:method name="update*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+			<!-- Action中execute，暂时先用REQUIRED,以后真对查询操作，	修改以后在使用NOT_SUPPORTED -->
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- Aop配置事务作用在那个位置：dao-->
+	<aop:config>
+		<aop:pointcut expression="execution (* com.loongxun.cbe.*.dao..*.*(..))"
+			id="curd" />
+		<aop:advisor advice-ref="idAdvice" pointcut-ref="curd" />
+	</aop:config>
+<!-- 接口管理start -->
+<!-- (企业基本信息)start -->
+<bean id="enterpriseDAO" class="com.loongxun.cbe.enterprise.dao.impl.EnterpriseDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+</bean>
+<bean id="loginDao" class="com.loongxun.cbe.user.impl.LoginDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="sysLogDao" class="com.loongxun.cbe.user.impl.SysLogDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+		<!-- 角色dao -->
+	<bean id="roleDao" class="com.loongxun.cbe.role.dao.impl.RoleDaoImpl">
+	<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 指标信息接口 -->
+	<bean id="attributeDao" class="com.loongxun.cbe.enterprise.dao.impl.AttributeDaoImpl">
+	<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+		<!-- 数据分析的DAO -->
+	<bean id="analyDao" class="com.loongxun.cbe.enterprise.dao.impl.DataAnalyDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 评级结果的DAO -->
+	<bean id="ratingDao" class="com.loongxun.cbe.enterprise.dao.impl.RatingResultsDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+		<!-- 数据分析历史DAO -->
+	<bean id="analyHDao" class="com.loongxun.cbe.enterprise.dao.impl.DateAnalyHDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 评级结果的历史DAO -->
+	<bean id="ratingHDao" class="com.loongxun.cbe.enterprise.dao.impl.RatingResultsHDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 数据分析DAO -->
+	<bean id="dataAnalysisDao" class="com.loongxun.cbe.dataAnalysis.daoimpl.dataAnalysisDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+		<!-- 指标信息service -->
+	<bean id="attributeService" class="com.loongxun.cbe.enterprise.service.AttributeService">
+		<property name="attributeDao" ref="attributeDao"></property>
+		<property name="analyDAO" ref="analyDao"></property>
+		<property name="ratingResultsDAO" ref="ratingDao"></property>
+		<property name="enterpriseDAO" ref="enterpriseDAO"></property>
+		<property name="analyHDAO" ref="analyHDao"></property>
+		<property name="ratingHDAO" ref="ratingHDao"></property>
+	</bean>
+<!-- (企业基本信息)end -->
+<!-- (用户基本信息)start -->
+<bean id="userDao" class="com.loongxun.cbe.user.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+</bean>
+<!-- (用户基本信息)end -->
+<!-- 接口管理end -->
+<!-- 执行类管理 -->
+	<bean id="eCon" class="com.loongxun.cbe.user.action.EnterpriseController" scope="prototype">
+		<property name="enterpriseDAO" ref="enterpriseDAO"></property>
+		<property name="userDao" ref="userDao"></property>
+		<property name="sysLogDao" ref="sysLogDao"></property>
+	</bean>
+		
+	<bean id="loginAction" class="com.loongxun.cbe.user.action.LoginAction" scope="prototype">
+		<property name="loginDao" ref="loginDao"></property>
+		<property name="sysLogDao" ref="sysLogDao"></property>
+		<property name="enterpriseDAO" ref="enterpriseDAO"></property>
+		<property name="roleDao" ref="roleDao"></property>
+	</bean>
+	<bean id="attributecontorller" class="com.loongxun.cbe.enterprise.action.AttributeController" scope="prototype">
+		<property name="sysLogDao" ref="sysLogDao"></property>
+		<property name="enterpriseDAO" ref="enterpriseDAO"></property>
+		<property name="attributeDao" ref="attributeDao"></property>
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="AnalysisAttribute" class="com.loongxun.cbe.enterprise.action.AnalysisAction" scope="prototype">
+			<property name="enterpriseDAO" ref="enterpriseDAO"></property>
+			<property name="attributeService" ref="attributeService"></property>
+			<property name="analyHDAO" ref="analyHDao"></property>
+			<property name="ratingHDAO" ref="ratingHDao"></property>
+	</bean>
+<bean id="finddataTotalScoerAction" class="com.loongxun.cbe.enterprise.action.FinddataTotalScoerAction" scope="prototype">
+			<property name="enterpriseDAO" ref="enterpriseDAO"></property>
+			<property name="analyHDAO" ref="analyHDao"></property>
+			<property name="ratingHDAO" ref="ratingHDao"></property>
+	</bean>
+	<bean id="findRatingReportAction" class="com.loongxun.cbe.ratingAction.FindRatingReportAction" scope="prototype">
+			<property name="enterpriseDAO" ref="enterpriseDAO"></property>
+			<property name="analyHDAO" ref="analyHDao"></property>
+			<property name="ratingHDAO" ref="ratingHDao"></property>
+				<property name="attributeDao" ref="attributeDao"></property>
+	</bean>
+<!-- 执行类管理 -->
+<!-- 支持类如ajax -->
+<bean id="uniqueUserName" class="com.loongxun.cbe.user.support.UniqueUserName">
+	<property name="userDao" ref="userDao"></property>
+</bean>
+	<!-- 登录模块Dao
+	<bean id="loginDao" class="com.loongxun.cbe.user.dao.LoginDao.LoginDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="loginAction" class="com.loongxun.cbe.user.action.loginAction.LoginAction" scope="prototype">
+		<property name="loginDAO" ref="loginDao"></property>
+	</bean>
+	 -->
+	  <!-- 权限管理action -->
+	 <bean id="roleAction" class="com.loongxun.cbe.role.action.FindRolesAction" scope="prototype">
+	 <property name="roleDao" ref="roleDao"></property>
+	 </bean>
+	 <!-- 基础类 -->
+	 <bean id="baseAction" class="com.loongxun.cbe.user.action.BaseAction" scope="prototype"></bean>
+	<!-- 用户管理action -->
+	<bean id="userAction" class="com.loongxun.cbe.sys.action.FindUserAction" scope="prototype">
+	<property name="userDao" ref="userDao"></property>
+	<property name="roleDao" ref="roleDao"></property>
+	</bean>
+	<!-- 系统日志action -->
+	<bean id="logAction" class="com.loongxun.cbe.role.action.SystemLogAction" scope="prototype">
+	<property name="roleDao" ref="roleDao"></property>
+	</bean>
+	<!-- 修改密码action -->
+	<bean id="updatePwdAction" class="com.loongxun.cbe.sys.action.UpdatePwdAction" scope="prototype">
+	<property name="userDao" ref="userDao"></property>
+	</bean>
+	<!-- 数据分析action -->
+	<bean id="dataAnalysis" class="com.loongxun.cbe.dataAnalysis.action.ToDataAnalysisAction" scope="prototype">
+	<property name="dataAnalysisdao" ref="dataAnalysisDao"></property>
+	<property name="attributeDao" ref="attributeDao"></property>
+	</bean>
+	<!-- 评定查询action -->
+	<bean id="findallRatingAction" class="com.loongxun.cbe.ratingAction.FindAllRatingAction" scope="prototype">
+	<property name="ratingHDao" ref="ratingHDao"></property>
+	<property name="enterpriseDAO" ref="enterpriseDAO"></property>
+	</bean>
+</beans>

@@ -1,0 +1,246 @@
+@charset "utf-8";
+/* CSS Document */
+<style type="text/css">
+*{margin:0;padding:0;}
+body{margin: 0px}
+.upleft{
+	width: 300px;
+	position: absolute;
+	left: 64px;
+	top: 6px;
+	height: 40px;
+	text-align: center;
+	font-size: 14px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-weight: bold;
+	line-height: 30px;
+}
+.upright{
+	position: absolute;
+	left: 1001px;
+	top: 23px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-weight: bold;
+	font-size: 10px;
+	}
+.LB{
+	position: absolute;
+	left: 107px;
+	top: 50px;
+	}
+.LR{
+	position: absolute;
+	left: 802px;
+	top: 77px;
+	}
+#blue{
+	position: absolute;
+	left: 363px;
+	top: 140px;
+	width: 164px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-weight: bold;
+	font-size: 16px;
+	height: 40px;
+	}
+#blue:hover{
+	background:url(../images/heng_blue.png) no-repeat center;
+	}
+#blue1{
+	position: absolute;
+height: 40px;
+top: 3px;
+left: 350px;
+font-family: Georgia,"Times New Roman",Times,serif;
+font-weight: bold;
+font-size: 16px;
+
+	}
+	#blue1 a{
+	color: #FFF;
+	font-weight: bold;
+	
+	}
+
+#blue10{
+	position: absolute;
+	font-weight: bold;
+	font-size: 16px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	left: 621px;
+	top: 140px;
+	width: 152px;
+	height: 40px;
+	}
+#blue10:hover{
+	background:url(../images/heng_blue.png) no-repeat center;
+	}
+#blue15{
+	position: absolute;
+	font-weight: bold;
+	font-size: 16px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	left: 749px;
+	top: 140px;
+	height: 40px;
+	width: 140px;
+	}
+#blue15:hover{
+	background:url(../images/heng_blue.png) no-repeat center;
+	}
+.blue18{
+	position: absolute;
+	color: #FFF;
+	left: 41px;
+	top: 13px;
+	width: 70px;
+	}
+.blue11{
+	position: absolute;
+	left: 13px;
+	top: 9px;
+	}
+.blue12{
+	position: absolute;
+	left: 23px;
+	top: 12px;
+	}
+.blue14{
+	position: absolute;
+	left: 138px;
+	top: 9px;
+	}
+.blue2{
+	position: absolute;
+	color: #FFF;
+	font-weight: bold;
+	left: 59px;
+	top: 14px;
+	}
+.blue13{
+	position: absolute;
+	color: #FFF;
+	font-weight: bold;
+	left: 49px;
+	width: 68px;
+	top: 13px;
+	}
+.blue3{
+	color: #FFF;
+	font-weight: bold;
+	position: absolute;
+	left: 49px;
+	top: 12px;
+	height: 21px;
+	width: 72px;
+	}
+.blue4{
+	position: absolute;
+	top: 10px;
+	left: 19px;
+	}
+.blue5{
+	position: absolute;
+	top: 10px;
+	left: 31px;
+	}
+.blue6{
+	position: absolute;
+	left: 145px;
+	top: 9px;
+	}
+.blue7{
+	position: absolute;
+	top: 9px;
+	left: 14px;
+	}
+.blue8{
+	position: absolute;
+	top: 12px;
+	left: 25px;
+	}
+.blue9{
+	position: absolute;
+	left: 140px;
+	top: 8px;
+	}
+.blue16{
+	position: absolute;
+	top: 9px;
+	left: 10px;
+	}
+.blue17{
+	position: absolute;
+	left: 21px;
+	top: 12px;
+	}
+.blue19{
+	position: absolute;
+	left: 129px;
+	top: 9px;
+	}
+	
+	
+#blue20{
+	position: absolute;
+	font-weight: bold;
+	font-size: 16px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	left: 889px;
+	top: 140px;
+	height: 40px;
+	width: 140px;
+	}
+#blue20:hover{
+	background:url(../images/heng_blue.png) no-repeat center;
+	}
+.blue21{
+	position: absolute;
+	top: 9px;
+	left: 10px;
+	}
+.blue22{
+	position: absolute;
+	left: 21px;
+	top: 12px;
+	}
+.blue23{
+	position: absolute;
+	color: #FFF;
+	left: 41px;
+	top: 13px;
+	width: 70px;
+	}
+.blue24{
+	position: absolute;
+	left: 129px;
+	top: 9px;
+	}
+	
+	
+	
+.STYLE1{	 
+	color:#FFF; 
+	text-align:center;
+	font-family:"微软雅黑";
+	margin-top:20px;}
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+}
+a{
+	width: 60px
+}
+img{
+border:none; 
+}
+</style>
+

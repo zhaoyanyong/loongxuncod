@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.loongxun.cbe.user.bean.SystemLog" table="loginfo" >
+        <id name="logId" type="java.lang.Integer">
+            <column name="LogId" />
+            <generator class="identity" />
+        </id>
+        <property name="userName" type="java.lang.String">
+            <column name="UserName" length="32" not-null="true">
+                <comment>用户名称</comment>
+            </column>
+        </property>
+        <property name="opreation" type="java.lang.String">
+            <column name="Opreation" length="100" not-null="true">
+                <comment>操作动作</comment>
+            </column>
+        </property>
+   
+        <property name="opreationDate" type="java.lang.String">
+            <column name="OpreationDate" length="32">
+                <comment>创建时间</comment>
+            </column>
+        </property>  
+ </class>
+</hibernate-mapping>

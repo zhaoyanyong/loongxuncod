@@ -1,0 +1,245 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>政府公开信息</title>
+
+<script type="text/javascript" language="javascript" src="js/jquery.js"></script>
+<style type="text/css">
+table {
+	border-right:1px #a8c7ce solid;
+	border-top:1px #a8c7ce solid;
+	}
+td {
+	border-left:1px #a8c7ce solid;
+	border-bottom:1px #a8c7ce solid;
+	height:28px;
+	text-align:center;
+	}
+body {
+	font-family:"宋体";
+	font-size:13px;
+	}
+a {
+	font-family:"宋体";
+	font-size:13px;
+	text-decoration:none;
+	}
+.btn {
+	background-image:url(images/right-anniubg1.png);
+	border:0px;
+	width:86px;
+	height:20px;
+	line-height:20px;}
+</style>
+<script type="text/javascript">
+	
+			function searchepname(){
+			var epname = document.getElementById("epname").value;
+			if(epname!=""&& epname!=null){
+			location.href="searchEnterprise?epname="+epname+"&toRight=toGovernment";
+			}
+			}
+			
+			function ShowExit() {
+             //获取iframe的window对象
+             var topWin = window.top.document.getElementById("center").contentWindow;
+             //通过获取到的window对象操作HTML元素，这和普通页面一样
+            var tw = topWin.document.getElementById("td1");
+              tw.style.display="block";
+              var ta = topWin.document.getElementById("td2");
+              ta.style.width="210"
+         }
+	function epinfo(ename){
+		//获取iframe的window对象
+             var topWin = window.top.document.getElementById("center").contentWindow;
+             //通过获取到的window对象操作HTML元素，这和普通页面一样
+            var tw = topWin.document.getElementById("td1");
+              tw.style.display="block";
+               var ta = topWin.document.getElementById("td2");
+              ta.style.width="210";
+		location.href="toUpdateEnterprise?lookOrUpdate=look&owner="+ename;
+		var alink = document.getElementById('loadleft');
+		   alink.click();
+		
+		
+	}
+function updateepinfo(ename){
+		//获取iframe的window对象
+             var topWin = window.top.document.getElementById("center").contentWindow;
+             //通过获取到的window对象操作HTML元素，这和普通页面一样
+            var tw = topWin.document.getElementById("td1");
+              tw.style.display="block";
+                var ta = topWin.document.getElementById("td2");
+              ta.style.width="210";
+		location.href="toUpdateEnterprise?lookOrUpdate=update&owner="+ename;
+		var alink = document.getElementById('loadleft');
+		   alink.click();
+		
+	}
+			</script>
+</head>
+
+<body onload="ShowExit()">
+<div style="display: none">
+		<a href="framleft?id=1"  id="loadleft" target="leftFrame"></a>
+	</div>
+	<div>
+		<div style="margin-right:0.5%"><img src="images/right.png" width="100%" height="524"></div>
+        
+        <div style="position:absolute; top:2%; left:2%; width:10px;"><img src="images/right-bai.jpg" height="8" width="8"></div>
+        
+<div style="position: absolute; top: 1%; left: 3%; width: 350px;">
+			当前登录的用户：<span style="font-weight: bold;font-size: 18px;">${admin.aname }</span>&nbsp;&nbsp;&nbsp;&nbsp;用户角色：<span style="font-weight: bold;font-size: 16px;">${admin.roleName }</span>
+		</div>
+
+		<div style="position: absolute; top: 2%; left: 85.5%; width: 10px;">
+			<img src="images/right-sanjiao.png" width="8" height="8">
+		</div>
+
+		<div style="position: absolute; top: 1.6%; left: 87%; width: 30px;">
+			IP:${admin.ip }
+		</div>      
+      <div style="position: absolute; top: 7%; left: 1%; width: 30px;"><img src="images/right-dangqian.png" width="20" height="20"></div>
+        <div style="position: absolute; top: 7.7%; left: 3%; width: 250px; color:#FFF;">目前操作的功能：企业基本信息</div>
+        
+        <div style="position: absolute; top: 6.5%; left: 85%; width: 200px; color:#FFF;">
+          
+        </div>
+        
+        <div style="width:100%; height:450px; position:absolute; top:12%; left:0.4%;">
+        		<c:if test="${loginUserAtLine!=3 }">
+        	<div style="width:98.5%; height:11%;">
+        
+            	<table cellpadding="0" cellspacing="0" style="border:1px #a8c7ce solid;" width="100%">
+                	<tr>
+                    	<td style="border-bottom:none; border-left:none; height:50px;">
+                        	<input type="hidden" name="hepname" value="${epname}">
+                        	<div style="float:left; margin-left:28%">企业名称：<input type="text"  id="epname"style="width:150px;" value="${epname}"/><button type="button"  id="searchepname" onclick="searchepname()"    class="btn">查询</button></div>
+                            <div style="float:left; margin-left:40%"></div>
+                        </td>
+                    </tr>
+                </table>
+               
+            </div>
+             </c:if>
+        	<div style="width:98.5%; height:100%;">
+            <!-- table内嵌样式 -->
+       		<table cellpadding="0" cellspacing="0" width="100%">
+            	<tr style="background-color:#d3eaf0;">
+                    <td width="18%" style=" font-size:14px">企业名称</td>
+                    <td width="11%" style=" font-size:14px">法定代表人</td>
+                    <td width="11%" style=" font-size:14px">机构代码</td>
+                    <td width="34%" style=" font-size:14px">公司地址</td>
+                    <td width="12%" style=" font-size:14px">联系电话</td>
+                    <td width="14%" style=" font-size:14px">操作</td>
+                </tr>
+                <c:forEach items="${ei }" var="e">
+                <tr>
+                    <td>    <a href=" javascript:;" onclick="epinfo('${e.username}')">${e.epname }</a></td>
+                    <td>${e.legalPerson }</td>
+                    <td>${e.orgNo}</td>
+                    <td>${e.registAddress}</td>
+                    <td>${e.contactPhone}</td>
+                    <td>
+                    <c:if test="${loginUserAtLine!=3}">
+                    &nbsp;
+                     <a href=" javascript:;" onclick="updateepinfo('${e.username}')">修改</a>
+                    <c:if test="${admin.adminName!=e.username}">
+                      &nbsp;
+                    <a href="delEnterprise?owner=${e.username }">删除</a>
+                    </c:if>
+                    </c:if>
+                   
+                    </td>
+                </tr>
+                </c:forEach>
+               
+            </table>
+            	<c:if test="${loginUserAtLine!=2 }">
+            	<c:if test="${line!= null }">
+            	<div style="width:100%; margin-top:1%">
+            		共有${line }条记录，当前是第${page }页，共${totalPage }页
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   
+                   	<c:if test="${totalPage>1 }">
+                    <button type="button" name="" value="" class="btn" onclick="javascript:goPage(1)">首页</button>&nbsp;
+                    <button type="button" name="" value="" class="btn" onclick="javascript:goPage(${page-1})">上一页</button>&nbsp;
+                  <c:if test="${page!= totalPage }">
+                    <button type="button" name="" value="" class="btn"  onclick="javascript:goPage(${page+1})">下一页</button>&nbsp;
+                    </c:if>
+                    <button type="button" name="" value="" class="btn" onclick="javascript:goPage(${totalPage})">尾页</button>&nbsp;
+                    转到<input type="text" style="width:20px; text-align:center;" id="jumpPage" onkeyup="this.value=this.value.replace(/\D/g,'')"/>页&nbsp;
+                    <button type="button" name="" value="" class="btn" onclick="javascript:gotoPage()">跳转</button>
+                    </c:if>
+                </div>
+            </c:if>
+            </c:if>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" >
+    function goPage(pageNo){
+               var hepname=document.getElementById('epname').value;
+				var totalPage=${totalPage};
+				var pageNo1=${page};
+				
+				if (totalPage==''||pageNo1==''){
+					var max = 0;
+					var s = 0;
+					if((pageNo>0)&&(pageNo<=max)&&(pageNo!=s)){
+						if(hepname=="" || hepname==null){
+						location.href="findEnter?page="+pageNo+"&toRight=right";
+						}else{
+						location.href="searchEnterprise?epname="+hepname+"&page="+pageNo+"&toRight=right";
+						}
+					}
+				}else{	
+					var max = totalPage;
+					var s = pageNo1;
+					if((pageNo>0)&&(pageNo<=max)&&(pageNo!=s)){
+				
+							if(hepname=="" || hepname==null){
+						location.href="findEnter?page="+pageNo+"&toRight=toGovernment";
+						}else{
+						location.href="searchEnterprise?epname="+hepname+"&page="+pageNo+"&toRight=toGovernment";
+						}
+						
+					}
+				}
+			}
+			function gotoPage(){
+				
+					var max = ${totalPage};
+					var now = ${page};
+					var s=document.getElementById('jumpPage').value;
+					 var hepname=document.getElementById('epname').value;
+					
+					var reg1 =  /^\d+$/;//验证大于0 的整数
+				
+						if(hepname=="" || hepname==null){
+						
+							if(reg1.test(s) && s!='0' && s!='' && parseInt(s)<=parseInt(max)){
+					location.href="findEnter?page="+s+"&toRight=toGovernment";
+					}else{
+					
+					}
+						}else{
+							if(reg1.test(s) && s!='0' && s!='' && parseInt(s)<=parseInt(max)){
+								location.href="searchEnterprise?epname="+hepname+"&page="+s+"&toRight=toGovernment";
+						}
+				
+				
+				
+}}			</script>
+</body>
+</html>

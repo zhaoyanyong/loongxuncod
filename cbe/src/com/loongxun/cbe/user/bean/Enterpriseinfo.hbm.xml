@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.loongxun.cbe.user.bean.Enterpriseinfo" table="enterprise_info" >
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="epname" type="java.lang.String">
+            <column name="EPName" length="32" not-null="true">
+                <comment>企业名称</comment>
+            </column>
+        </property>
+        <property name="orgNo" type="java.lang.String">
+            <column name="OrgNo" length="16" not-null="true">
+                <comment>机构代码</comment>
+            </column>
+        </property>
+        <property name="username" type="java.lang.String">
+            <column name="Username" length="16" not-null="true">
+                <comment>关联用户账号</comment>
+            </column>
+        </property>
+        <property name="postcode" type="java.lang.String">
+            <column name="Postcode" length="8" not-null="true">
+                <comment>邮政编号</comment>
+            </column>
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="Address" length="100" not-null="true">
+                <comment>注册地址</comment>
+            </column>
+        </property>
+        <property name="registAddress" type="java.lang.String">
+            <column name="RegistAddress" length="100" not-null="true">
+                <comment>注册地址</comment>
+            </column>
+        </property>
+
+        <property name="registMoney" type="java.lang.Double">
+            <column name="RegistMoney" precision="8" scale="0" not-null="true">
+                <comment>注册资金</comment>
+            </column>
+        </property>
+        <property name="contacts" type="java.lang.String">
+            <column name="Contacts" length="16" not-null="true">
+                <comment>企业联系人</comment>
+            </column>
+        </property>
+        <property name="contactPhone" type="java.lang.String">
+            <column name="ContactPhone" length="16" not-null="true">
+                <comment>联系人电话</comment>
+            </column>
+        </property>
+        <property name="contactEmail" type="java.lang.String">
+            <column name="ContactEmail" length="16" not-null="true">
+                <comment>联系人邮箱</comment>
+            </column>
+        </property>
+        <property name="legalPerson" type="java.lang.String">
+            <column name="LegalPerson" length="16" not-null="true">
+                <comment>企业法人代表</comment>
+            </column>
+        </property>
+        <property name="legalPhone" type="java.lang.String">
+            <column name="LegalPhone" length="16" not-null="true">
+                <comment>法人代表电话</comment>
+            </column>
+        </property>
+        <property name="legalEmail" type="java.lang.String">
+            <column name="LegalEmail" length="16" not-null="true">
+                <comment>法人代表邮箱</comment>
+            </column>
+        </property>
+        <property name="area" type="java.lang.Integer">
+            <column name="Area" not-null="true">
+                <comment>企业所属地区</comment>
+            </column>
+        </property>
+        <property name="profession" type="java.lang.Integer">
+            <column name="Profession" not-null="true">
+                <comment>企业所属行业</comment>
+            </column>
+        </property>
+        <property name="property" type="java.lang.Integer">
+            <column name="Property" not-null="true">
+                <comment>企业所属性质</comment>
+            </column>
+        </property>
+        <property name="charac" type="java.lang.Integer">
+            <column name="Charac" not-null="false">
+                <comment>企业所属特性</comment>
+            </column>
+        </property>
+        <property name="staff" type="java.lang.String">
+            <column name="Staff" length="8" not-null="true">
+                <comment>企业员工总数</comment>
+            </column>
+        </property>
+           <property name="womenStaff" type="java.lang.String">
+            <column name="WomenStaff" length="8" >
+                <comment>女性员工总数</comment>
+            </column>
+        </property>
+           <property name="MinorityStaff" type="java.lang.String">
+            <column name="MinorityStaff" length="8" >
+                <comment>少数民族员工总数</comment>
+            </column>
+        </property>
+        <property name="colleageStaff" type="java.lang.String">
+            <column name="ColleageStaff" length="8" not-null="true">
+                <comment>大专及以上毕业生的员工数</comment>
+            </column>
+        </property>
+        <property name="technicalStaff" type="java.lang.String">
+            <column name="TechnicalStaff" length="8" not-null="true">
+                <comment>技术人员数量</comment>
+            </column>
+        </property>
+        <property name="manageStaff" type="java.lang.String">
+            <column name="ManageStaff" length="8" not-null="true">
+                <comment>管理人员数量</comment>
+            </column>
+        </property>
+        <property name="stage" type="java.lang.Integer">
+            <column name="Stage" not-null="true">
+                <comment>生命周期</comment>
+            </column>
+        </property>
+        <property name="isHeavyIndustry" type="java.lang.Boolean">
+            <column name="IsHeavyIndustry" not-null="true">
+                <comment>是否为重工业</comment>
+            </column>
+        </property>
+        <property name="otherProperty" type="java.lang.String">
+            <column name="OtherProperty" length="100">
+                <comment>其他企业性质</comment>
+            </column>
+        </property>
+        <property name="otherCharac" type="java.lang.String">
+            <column name="OtherCharac" length="100">
+                <comment>其他企业特性</comment>
+            </column>
+        </property>
+        
+        <property name="license" type="java.lang.String">
+            <column name="License" length="100">
+                <comment>营业执照</comment>
+            </column>
+        </property>
+        <property name="tax" type="java.lang.String">
+            <column name="Tax" length="100">
+                <comment>税务登记证</comment>
+            </column>
+        </property>
+        <property name="licenseUrl" type="java.lang.String">
+            <column name="LicenseUrl" length="100">
+                <comment>营业执照图片</comment>
+            </column>
+        </property>
+        <property name="taxUrl" type="java.lang.String">
+            <column name="TaxUrl" length="100">
+                <comment>税务登记证图片</comment>
+            </column>
+        </property>
+         <property name="orgNoUrl" type="java.lang.String">
+            <column name="OrgNoUrl" length="100">
+                <comment>组织机构图片</comment>
+            </column>
+        </property>
+        
+        <property name="createTime" type="java.lang.String">
+            <column name="CreateTime" length="32">
+                <comment>创建时间</comment>
+            </column>
+        </property>
+        <property name="deleteFlag" type="java.lang.Integer">
+            <column name="DeleteFlag">
+                <comment>删除标志0：正常；1：删除</comment>
+            </column>
+        </property>
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,54 @@
+body {
+	background-image: url(../images/right.png);
+	background-repeat: no-repeat;
+}
+
+.td1 {
+	background-image: url("../images/tdright.png");
+}
+
+.td2 {
+	background-image: url("../images/tdmid.png");
+}
+
+.td3 {
+	background-image: url("../images/tdleft.png");
+}
+
+.td4 {
+	background-image: url("../images/tdcenter.png");
+}
+
+span {
+	font-size: small;
+}
+
+.search {
+	background-image: url("../images/search.png");
+	width: 101px;
+	height: 27px;
+	border: 0px;
+	color: #000000;
+}
+
+.search:hover {
+	background-image: url("../images/searchon.png");
+	width: 101px;
+	height: 27px;
+	border: 0px;
+	color: #FFFFFF;
+}
+
+.trBg {
+	background-color: #F2F2F2;
+	height: 27px;
+	text-align: center;
+	font-size: 12px;
+}
+
+.trBg:hover {
+	background-color: #FFFFFF;
+	height: 27px;
+	text-align: center;
+	font-size: 12px;
+}
